@@ -4,9 +4,8 @@ import Vehicule from '../model/vehiculeModel.js';
 const createVehicule = (req, res) => {
   try {
     const data = req.body;
-    console.log(data);
-    const vehicule = new Vehicule(data.immatriculation, data.marque, data.modele, data.annee, data.prix);
-    vehiculeData.push(vehicule);
+    const vehicule = new Vehicule(data);
+    vehicule.save();
     res.status(201).send(vehicule);
   } catch (error) {
     logger.error(error);
@@ -14,23 +13,18 @@ const createVehicule = (req, res) => {
   }
 }
 
-const deleteVehicule = (req, res) => {
+const deleteVehicule = async (req, res) => {
   try {
-    const index = vehiculeData.findIndex(vehicle => vehicle.id === req.params.id);
-    if (index !== -1) {
-      vehiculeData.splice(index, 1);
-      res.status(204).send();
-    } else {
-      res.status(404).send({ message: 'Vehicle not found' });
-    }
+    await Vehicule.findByIdAndDelete(req.params.id);
+    res.status(204).send();
   } catch (err) {
     res.status(500).send(err);
   }
 }
 
-const getVehiculeByImmatriculation = (req, res) => {
+const getVehiculeByImmatriculation = async (req, res) => {
   try {
-    const vehicle = vehiculeData.find(vehicle => vehicle.immatriculation === req.params.immatriculation);
+    const vehicle = await Vehicule.findOne({ immatriculation: req.params.immatriculation });
     if (!vehicle) {
       res.status(404).send("Vehicle not found");
     } else {
@@ -42,25 +36,22 @@ const getVehiculeByImmatriculation = (req, res) => {
 }
 
 
-const updateVehicule = (req, res) => {
+const updateVehicule = async (req, res) => {
   try {
-    const index = vehiculeData.findIndex(vehicle => vehicle.id === req.params.id);
-    if (index !== -1) {
-      vehiculeData[index] = { ...vehiculeData[index], ...req.body };
-      res.send(vehiculeData[index]);
-    } else {
-      res.status(404).send({ message: 'Vehicle not found' });
-    }
+    const vehicule = await Vehicule.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.send(vehicule);
   } catch (err) {
     res.status(500).send(err);
   }
 }
 
 
-const getallVehicule = (req, res) => {
+const getallVehicule = async (req, res) => {
   try {
-    const vehicles = vehiculeData;
-    if (!vehicles || vehicles.length === 0) {
+    const vehicles = await Vehicule.find();
+    if (!vehicles) {
       res.status(404).send("Vehicles not found");
     } else {
       res.send(vehicles);
@@ -71,9 +62,9 @@ const getallVehicule = (req, res) => {
 }
 
 
-const getVehiculeById = (req, res) => {
+const getVehiculeById = async (req, res) => {
   try {
-    const vehicle = vehiculeData.find(vehicle => vehicle.id === req.params.id);
+    const vehicle = await Vehicule.findById(req.params.id);
     if (!vehicle) {
       res.status(404).send("Vehicle not found");
     } else {
@@ -84,9 +75,11 @@ const getVehiculeById = (req, res) => {
   }
 }
 
-const searchVehiculeByPrice = (req, res) => {
+const searchVehiculeByPrice = async (req, res) => {
   try {
-    const vehicles = vehiculeData.filter(vehicle => vehicle.rentalPrice <= req.params.maxPrice);
+    const vehicles = await Vehicule.find({
+      prix: { $lte: req.params.prix },
+    });
     if (!vehicles || vehicles.length === 0) {
       res.status(404).send("Vehicles not found");
     } else {
