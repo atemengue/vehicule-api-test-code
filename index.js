@@ -3,6 +3,13 @@ import express from 'express';
 import pino from 'pino';
 import pinoHttp from 'pino-http';
 import seedData from './data/seedData.js  ';
+import Vehicule from './model/vehiculeModel.js';
+
+const vehiculeData = [];
+
+function seed() {
+  vehiculeData.push(...seedData);
+}
 
 // Create a new express application instance
 const app = express();
@@ -22,14 +29,25 @@ const logger = pino({
 app.use(pinoHttp({ logger }));
 
 
+seed();
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-
 //POST vehicule
 app.post('/vehicule', (req, res) => {
-  res.send('POST vehicule');
+  try {
+    const data = req.body;
+    console.log(data);
+    const vehicule = new Vehicule(data.immatriculation, data.marque, data.modele, data.annee, data.prix);
+    vehiculeData.push(vehicule);
+    res.status(201).send(vehicule);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).send('Erreur d\'application');
+  }
 })
 
 // UPDATE vehicule by id
@@ -51,9 +69,19 @@ app.get('/vehicule/search/:immatriculation', (req, res) => {
 app.get('/vehicules/filter/price', (req, res) => {
   res.send('FILTER vehicule by price');
 });
+
 //GET all vehicules
 app.get('/vehicules', (req, res) => {
-  res.send('GET all vehicules');
+  try {
+    const vehicles = vehiculeData;
+    if (!vehicles || vehicles.length === 0) {
+      res.status(404).send("Vehicles not found");
+    } else {
+      res.send(vehicles);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 // GET vehicule by id

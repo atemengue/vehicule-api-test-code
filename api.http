@@ -1,3 +1,17 @@
 ### GET Vehicules
 
-GET http://localhost:3000/vehicule HTTP/1.1
+GET http://localhost:3000/vehicules HTTP/1.1
+
+
+### POST Vehicule
+POST http://localhost:3000/vehicule HTTP/1.1
+Content-Type: application/json
+
+{
+  "marque": "Peugeot",
+  "modele": "208",
+  "couleur": "rouge",
+  "immatriculation": "AA-123-BB",
+  "annee": 2018,
+  "prix": 2000000
+}

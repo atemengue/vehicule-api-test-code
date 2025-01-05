@@ -8,7 +8,7 @@ const modeles = ["Camry", "Civic", "F-150", "Silverado", "Altima"];
 const annees = [2022, 2023, 2025, 2025];
 
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 5; i++) {
   const marque = marques[Math.floor(Math.random() * marques.length)];
   const modele = modeles[Math.floor(Math.random() * modeles.length)];
   const annee = annees[Math.floor(Math.random() * annees.length)];
@@ -17,4 +17,4 @@ for (let i = 0; i < 10; i++) {
   seedData.push(vehicule);
 }
 
-export default seedData;
+export default seedData;  
