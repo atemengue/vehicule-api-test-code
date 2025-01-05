@@ -72,7 +72,16 @@ app.delete('/vehicule/:id', (req, res) => {
 
 // GET vehicule by immaniculation number  (immatriculation)
 app.get('/vehicule/search/:immatriculation', (req, res) => {
-  res.send('GET vehicule by immatriculation');
+  try {
+    const vehicle = vehiculeData.find(vehicle => vehicle.immatriculation === req.params.immatriculation);
+    if (!vehicle) {
+      res.status(404).send("Vehicle not found");
+    } else {
+      res.send(vehicle);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 // FILTER vehicule by price
@@ -96,7 +105,16 @@ app.get('/vehicules', (req, res) => {
 
 // GET vehicule by id
 app.get('/vehicule/:id', (req, res) => {
-  res.send('GET vehicule by id');
+  try {
+    const vehicle = vehiculeData.find(vehicle => vehicle.id === req.params.id);
+    if (!vehicle) {
+      res.status(404).send("Vehicle not found");
+    } else {
+      res.send(vehicle);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 app.listen(3000, () => {

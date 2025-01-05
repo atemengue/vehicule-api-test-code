@@ -28,3 +28,9 @@ Content-Type: application/json
   "annee": 2020,
   "prix": 2500000
 } 
+
+### GET Vehicule by id
+GET http://localhost:3000/vehicule/564880af-67a1-4685-a782-33e607deacf6 HTTP/1.1
+
+### GET Vehicule by Inmatriculation
+GET http://localhost:3000/vehicule/search/ABC1 HTTP/1.1
