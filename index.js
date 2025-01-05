@@ -67,7 +67,17 @@ app.put('/vehicule/:id', (req, res) => {
 
 // DELETE vehicule by id
 app.delete('/vehicule/:id', (req, res) => {
-  res.send('DELETE vehicule by id');
+  try {
+    const index = vehiculeData.findIndex(vehicle => vehicle.id === req.params.id);
+    if (index !== -1) {
+      vehiculeData.splice(index, 1);
+      res.status(204).send();
+    } else {
+      res.status(404).send({ message: 'Vehicle not found' });
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 // GET vehicule by immaniculation number  (immatriculation)

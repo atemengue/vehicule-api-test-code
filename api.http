@@ -34,3 +34,7 @@ GET http://localhost:3000/vehicule/564880af-67a1-4685-a782-33e607deacf6 HTTP/1.1
 
 ### GET Vehicule by Inmatriculation
 GET http://localhost:3000/vehicule/search/ABC1 HTTP/1.1
+
+
+### DELETE Vehicule
+DELETE http://localhost:3000/vehicule/48f2d887-db5e-464f-bdea-303cf1fa622b HTTP/1.1
