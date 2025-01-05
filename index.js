@@ -52,7 +52,17 @@ app.post('/vehicule', (req, res) => {
 
 // UPDATE vehicule by id
 app.put('/vehicule/:id', (req, res) => {
-  res.send('UPDATE vehicule by id');
+  try {
+    const index = vehiculeData.findIndex(vehicle => vehicle.id === req.params.id);
+    if (index !== -1) {
+      vehiculeData[index] = { ...vehiculeData[index], ...req.body };
+      res.send(vehiculeData[index]);
+    } else {
+      res.status(404).send({ message: 'Vehicle not found' });
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 // DELETE vehicule by id

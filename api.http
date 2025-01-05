@@ -15,3 +15,16 @@ Content-Type: application/json
   "annee": 2018,
   "prix": 2000000
 }
+
+### UPDATE Vehicule
+PUT http://localhost:3000/vehicule/6b1b0ed5-937d-4eed-a5a9-af7650d89f78 HTTP/1.1
+Content-Type: application/json
+
+{
+  "marque": "Peugeot",
+  "modele": "210",
+  "couleur": "noire",
+  "immatriculation": "AA-123-BB",
+  "annee": 2020,
+  "prix": 2500000
+} 
