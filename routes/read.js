@@ -3,7 +3,7 @@
  * /vehicule/search/{immatriculation}:
  *   get:
  *     summary: Récupérer un véhicule par son numéro d'immatriculation
- *     tags: [Véhicules]
+ *     tags: [Vehicule]
  *     parameters:
  *       - in: path
  *         name: immatriculation
@@ -29,7 +29,7 @@
  * /vehicules/filter/price:
  *   get:
  *     summary: Filtrer les véhicules par prix
- *     tags: [Véhicules]
+ *     tags: [Vehicule]
  *     parameters:
  *       - in: query
  *         name: prix
@@ -57,7 +57,7 @@
  * /vehicules:
  *   get:
  *     summary: Récupérer tous les véhicules
- *     tags: [Véhicules]
+ *     tags: [Vehicule]
  *     responses:
  *       200:
  *         description: Liste de tous les véhicules
@@ -78,7 +78,7 @@
  * /vehicule/{id}:
  *   get:
  *     summary: Récupérer un véhicule par son ID
- *     tags: [Véhicules]
+ *     tags: [Vehicule]
  *     parameters:
  *       - in: path
  *         name: id
