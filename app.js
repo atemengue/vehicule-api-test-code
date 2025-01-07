@@ -1,3 +1,4 @@
+
 import bodyParser from 'body-parser';
 import 'dotenv/config';
 import express from 'express';
@@ -6,7 +7,7 @@ import pinoHttp from 'pino-http';
 // import seedData from './data/seedData.js  ';
 import vehiculeData from './data/vehicule.js';
 import vehiculeApiRoutes from './routes/index.js';
-
+import swaggerSetup from './swagger.js';
 
 
 // function seed() {
@@ -30,10 +31,22 @@ const logger = pino({
 
 app.use(pinoHttp({ logger }));
 
+swaggerSetup(app);
 
-// seed();
 
 
+
+// healthcheck endpoint
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Healthcheck endpoint.
+ *     description: Returns a message indicating that the service is running.
+ *     responses:
+ *       200:
+ *         description: A message indicating that the service is running.
+ */
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
