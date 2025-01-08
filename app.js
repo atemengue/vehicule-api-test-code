@@ -3,9 +3,9 @@ import express from 'express';
 import pino from 'pino';
 import { pinoHttp } from 'pino-http';
 import seedData from './data/seedData.js';
-import Vehicule from './models/VehiculeModel.js';
+import { vehiculeData } from './data/vehiculeData.js';
+import VehiculeAPIRoutes from './routes/index.js';
 
-const vehiculeData = [];
 
 function seed() {
   vehiculeData.push(...seedData);
@@ -30,7 +30,9 @@ app.use(pinoHttp({ logger }));
 
 // seed des donnees
 seed();
-// structure des routes
+
+// initialisation des routes
+VehiculeAPIRoutes(app);
 
 
 app.get('/', (req, res) => {
