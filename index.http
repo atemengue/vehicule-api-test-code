@@ -1,0 +1,37 @@
+### GET /vehicules
+
+GET http://localhost:3000/vehicules
+
+### PUT /vehicule/bb05417d-2898-44fa-953f-2713b192fd9e
+PUT http://localhost:3000/vehicule/f5674642-b9c8-49c6-b4c9-6e82a143dd1d
+Content-Type: application/json
+
+{
+  "prixLocation": 200000
+}
+
+### DELETE /vehicule/1
+DELETE http://localhost:3000/vehicule/3f32d9f9-ceaa-4d98-9ad8-0089acd4daf8
+
+### GET VEHICULE by id
+GET http://localhost:3000/vehicule/cff28955-f1c2-47f9-a715-992ed827bdec HTTP/1.1
+
+
+### GET /vehicule/search/:immatriculation
+GET http://localhost:3000/vehicule/search/ABC-1 HTTP/1.1
+
+### POST Vehicule
+POST http://localhost:3000/vehicule
+Content-Type: application/json
+
+{
+  "marque": "Toyota",
+  "model": "Hybride",
+  "annee": 2024,
+  "prixLocation": 500000,
+  "immatriculation": "ABC-15"
+}
+
+#### GET /vehicule/price/:prixMax"
+
+GET http://localhost:3000/vehicule/price/160000
