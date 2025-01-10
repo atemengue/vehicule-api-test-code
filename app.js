@@ -1,10 +1,12 @@
 import bodyParser from 'body-parser';
+import 'dotenv/config';
 import express from 'express';
 import pino from 'pino';
 import { pinoHttp } from 'pino-http';
 import seedData from './data/seedData.js';
 import { vehiculeData } from './data/vehiculeData.js';
 import VehiculeAPIRoutes from './routes/index.js';
+
 
 
 function seed() {
