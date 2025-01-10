@@ -5,8 +5,8 @@ import Vehicule from '../models/VehiculeModel.js';
 function createVehicule(req, res) {
   const data = req.body;
   try {
-    const vehicule = new Vehicule(data.marque, data.model, data.immatriculation, data.annee, data.prixLocation);
-    vehiculeData.push(vehicule);
+    const vehicule = new Vehicule(data);
+    vehicule.save();
     res.status(201).send("Vehicule crée");
   } catch (error) {
     res.status(500).send("Erreur d'application");
