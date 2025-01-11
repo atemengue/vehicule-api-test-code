@@ -3,6 +3,7 @@ import vehiculeController from '../controllers/vehiculeController.js';
 
 const router = express.Router();
 
+
 // creer un vehicule
 router.post('/vehicule', vehiculeController.createVehicule);
 
