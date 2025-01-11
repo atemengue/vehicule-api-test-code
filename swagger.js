@@ -3,7 +3,7 @@ import swaggerUi from 'swagger-ui-express';
 
 const options = {
   definition: {
-    openai: "3.0.0",
+    openapi: "3.0.0",
     info: {
       title: "Vehicule API Propelize",
       version: "1.0.0",
@@ -20,7 +20,7 @@ const options = {
       }
     ]
   },
-  apis: ["./routes/*.js", "./models/*.js"]
+  apis: ["./models/*.js", "./routes/*.js", "./app.js"]
 }
 
 const specs = swaggerJSDoc(options);

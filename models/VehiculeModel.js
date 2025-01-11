@@ -2,10 +2,9 @@
 
 import mongoose from 'mongoose';
 
-
 /**
  * @swagger
- * components
+ * components:
  *  schemas:
  *    Vehicule:
  *      type: object
