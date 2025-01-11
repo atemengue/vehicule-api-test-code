@@ -3,15 +3,8 @@ import 'dotenv/config';
 import express from 'express';
 import pino from 'pino';
 import { pinoHttp } from 'pino-http';
-import seedData from './data/seedData.js';
-import { vehiculeData } from './data/vehiculeData.js';
 import VehiculeAPIRoutes from './routes/index.js';
 
-
-
-function seed() {
-  vehiculeData.push(...seedData);
-}
 
 const app = express();
 app.use(bodyParser.json());
@@ -28,10 +21,6 @@ const logger = pino({
 
 // logger pino
 app.use(pinoHttp({ logger }));
-
-
-// seed des donnees
-seed();
 
 // initialisation des routes
 VehiculeAPIRoutes(app);

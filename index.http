@@ -3,35 +3,38 @@
 GET http://localhost:3000/vehicules
 
 ### PUT /vehicule/bb05417d-2898-44fa-953f-2713b192fd9e
-PUT http://localhost:3000/vehicule/f5674642-b9c8-49c6-b4c9-6e82a143dd1d
+PUT http://localhost:3000/vehicule/6780caf5f8c74fb38ea2f4a1
 Content-Type: application/json
 
 {
-  "prixLocation": 200000
+  "immatriculation": "MERC-15",
+  "model": "AVENSIS",
+  "annee": 2020,
+  "prixLocation": 100000
 }
 
 ### DELETE /vehicule/1
-DELETE http://localhost:3000/vehicule/3f32d9f9-ceaa-4d98-9ad8-0089acd4daf8
+DELETE http://localhost:3000/vehicule/6780d180b0c590fb8e2ec198
 
 ### GET VEHICULE by id
-GET http://localhost:3000/vehicule/4588b620-d245-45d6-8b7f-bcb1acbe39f0 HTTP/1.1
+GET http://localhost:3000/vehicule/6780cbb78f76a429c87a0144 HTTP/1.1
 
 
 ### GET /vehicule/search/:immatriculation
-GET http://localhost:3000/vehicule/search/ABC-1 HTTP/1.1
+GET http://localhost:3000/vehicule/search/ABD-85 HTTP/1.1
 
 ### POST Vehicule
 POST http://localhost:3000/vehicule
 Content-Type: application/json
 
 {
-  "marque": "Toyota",
-  "model": "Hybride",
-  "annee": 2024,
-  "prixLocation": 500000,
-  "immatriculation": "ABC-15"
+  "marque": "Mercedes",
+  "model": "GLK",
+  "annee": 2019,
+  "prixLocation": 300000,
+  "immatriculation": "ABD-848"
 }
 
 #### GET /vehicule/price/:prixMax"
 
-GET http://localhost:3000/vehicule/price/160000
+GET http://localhost:3000/vehicule/price/400000

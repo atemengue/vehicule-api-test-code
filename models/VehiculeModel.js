@@ -10,8 +10,11 @@ const VehiculeSchema = new mongoose.Schema({
   model: String,
   annee: Number,
   prixLocation: Number
+}, {
+  timestamps: true
 });
 
-const VehiculeModel = mongoose.model("Vehicules", VehiculeSchema);
+const VehiculeModel = new mongoose.model('Vehicules', VehiculeSchema);
+
 
 export default VehiculeModel;

@@ -1,4 +1,3 @@
-import { vehiculeData } from '../data/vehiculeData.js';
 import Vehicule from '../models/VehiculeModel.js';
 
 // create
@@ -14,9 +13,9 @@ function createVehicule(req, res) {
 }
 
 // read all
-function readVehicules(req, res) {
+async function readVehicules(req, res) {
   try {
-    const vehicules = vehiculeData;
+    const vehicules = await Vehicule.find()
     if (!vehicules || vehicules.length === 0) {
       res.status(404).send("Vehicules non trouvés")
     } else {
@@ -28,10 +27,10 @@ function readVehicules(req, res) {
 }
 
 // read by id
-function readVehiculeByiD(req, res) {
+async function readVehiculeByiD(req, res) {
   const id = req.params.id;
   try {
-    const vehicule = vehiculeData.find(vehicule => vehicule.id === id);
+    const vehicule = await Vehicule.findById(id);
     if (!vehicule) {
       res.status(404).send("Vehicule non trouvé");
     } else {
@@ -42,25 +41,28 @@ function readVehiculeByiD(req, res) {
   }
 }
 // read by immatriculation
-function readVehiculeByImmatriculation(req, res) {
+async function readVehiculeByImmatriculation(req, res) {
   const immatriculation = req.params.immatriculation;
   try {
-    const vehicule = vehiculeData.find(vehicule => vehicule.immatriculation === immatriculation);
+    const vehicule = await Vehicule.findOne({ immatriculation: immatriculation });
     if (!vehicule) {
       res.status(404).send("Vehicule Non trouvé");
     } else {
       res.send(vehicule);
     }
   } catch (error) {
+    console.log(error);
     res.status(500).send("Erreur d'application");
   }
 }
 
 // read searchVehicule By Price
-function searchVehiculeByPrice(req, res) {
+async function searchVehiculeByPrice(req, res) {
   const prixMax = parseInt(req.params.prixMax);
   try {
-    const vehicules = vehiculeData.filter(vehicule => vehicule.prixLocation <= prixMax);
+    const vehicules = await Vehicule.find({
+      prixLocation: { $lte: prixMax }
+    })
     if (!vehicules || vehicules.length === 0) {
       res.status(404).send("Vehicules non trouvés");
     } else {
@@ -71,32 +73,26 @@ function searchVehiculeByPrice(req, res) {
   }
 }
 
-function updateVehicule(req, res) {
+async function updateVehicule(req, res) {
   const id = req.params.id;
+  const data = req.body;
   try {
-    const index = vehiculeData.findIndex(vehicule => vehicule.id === id);
-    if (index !== -1) {
-      vehiculeData[index] = { ...vehiculeData[index], ...req.body };
-      res.status(200).send(vehiculeData[index]);
-    } else {
-      res.status(404).send("Vehicule non trouvé");
-    }
+    const vehicule = await Vehicule.findByIdAndUpdate(id, data, {
+      new: true
+    })
+    res.send(vehicule);
   } catch (error) {
     res.send(500).send("Erreur d'application")
   }
 }
 
-function deleteVehicule(req, res) {
+async function deleteVehicule(req, res) {
   const id = req.params.id;
   try {
-    const index = vehiculeData.findIndex(vehicule => vehicule.id === id);
-    if (index !== -1) {
-      vehiculeData.splice(index, 1);
-      res.status(204).send();
-    } else {
-      res.status(404).send("Vehicule non trouvé");
-    }
+    await Vehicule.findByIdAndDelete(id)
+    res.status(204).send();
   } catch (error) {
+    console.log(error)
     res.status(500).send("Erreur d'application");
   }
 }

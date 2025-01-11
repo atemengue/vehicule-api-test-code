@@ -1,5 +1,3 @@
-import Vehicule from '../models/VehiculeModel.js';
-
 
 const seedData = [];
 
@@ -12,8 +10,6 @@ for (let i = 0; i < 5; i++) {
   const modele = modeles[Math.floor(Math.random() * modeles.length)];
   const annee = annees[Math.floor(Math.random() * annees.length)];
   const prixLocation = Math.floor(Math.random() * 351) + 50000;
-  const vehicule = new Vehicule(marque, modele, `ABC-${i}`, annee, prixLocation);
-  seedData.push(vehicule);
 }
 
 export default seedData;
