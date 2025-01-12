@@ -15,7 +15,7 @@ const options = {
         description: "Serveur de production"
       },
       {
-        url: "http://locahost:3000",
+        url: "http://localhost:3000",
         description: "Serveur local"
       }
     ]
