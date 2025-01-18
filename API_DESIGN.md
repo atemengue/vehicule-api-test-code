@@ -51,24 +51,23 @@ Response:  200: Vehicule ok
 HTTP: GET
 URL: /vehicules
 
-Response: 200: Vehicule ok
+Response: 200: Une liste de vehicule
           404: Vehicules non trouvés
           500: Erreur d'application
 
-
 6. Lire les information d'un vehicule à l'aide de son numero d'immatriculation
-HTTP GET
+HTTP: GET
 URL /vehicule/search/:immatriculation
 
-Response: 200 Vehicule ok
-          404 Vehicule non trouve
-          500 Erreur d'application
+Reponse: 200: Vehicule ok
+         404: Vehicule non trouvé
+         500: Erreur d'application
 
 
 7. Recuperer les vehicules par prix. (filter les vehicule grace au prix max)
-HTTP GET
+HTTP: GET
 URL /vehicule/price/:prixMax
 
-Response: 200: Une liste de vehicules
-          404: Vehicules non trouvés
-          500: Erreur d'application
+Reponse: 200: Une liste de Vehicule
+         404: Vehicules non trouvés
+         500: Erreur d'application
