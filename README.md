@@ -23,6 +23,7 @@
 1. Créez un fichier `.env` à la racine du projet et ajoutez les variables d'environnement nécessaires :
    ```env
    DB_PASSWORD="votre_mot_de_passe"
+   DB_URL="votre_url_atlas"
    ```
 
 ## Démarrage

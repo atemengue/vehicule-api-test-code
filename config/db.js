@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const uri = `mongodb+srv://c:${process.env.DB_PASSWORD}@cluster0.ov70w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+const uri = process.env.DB_URL;
 
 // connexion
 const connectDB = async () => {
